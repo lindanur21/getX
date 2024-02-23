@@ -30,7 +30,7 @@ class OutPut extends StatelessWidget {
                           'Place Of Birth : ${latihan1.placeofbirth.value}'),
                     ),
                     ListTile(
-                      title: Text('Date Of Birth : ${latihan1.calculateAge()}'),
+                      title: Text('Age : ${latihan1.calculateAge()}'),
                     ),
                     ListTile(
                       title: Text('Gander : ${latihan1.gender.value}'),

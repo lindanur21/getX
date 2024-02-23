@@ -163,8 +163,7 @@ class Latihan1 extends StatelessWidget {
                         ),
                         SizedBox(height: 16.0),
                         InkWell(
-                          onTap: () =>
-                              latihanController.selectExpiredDate(context),
+                          onTap: () => latihanController.selectExpiredDate(),
                           child: InputDecorator(
                             decoration: InputDecoration(
                               hintText: 'Pilih Tanggal',
