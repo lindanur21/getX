@@ -12,7 +12,10 @@ import '../modules/employe/views/employe_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/kategori/bindings/kategori_binding.dart';
+import '../modules/kategori/views/create_view.dart';
+import '../modules/kategori/views/edit_view.dart';
 import '../modules/kategori/views/kategori_view.dart';
+import '../modules/kategori/views/show_view.dart';
 import '../modules/latihan1/bindings/latihan1_binding.dart';
 import '../modules/latihan1/views/latihan1_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -73,8 +76,22 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.KATEGORI,
-      page: () => KategoriView(),
+      page: () => const KategoriView(),
       binding: KategoriBinding(),
+      children: [
+        GetPage(
+          name: _Paths.CreateKategori,
+          page: () => CreateKategoriView(),
+        ),
+        GetPage(
+          name: _Paths.EditKategori,
+          page: () => EditKategoriView(kategori: Get.arguments),
+        ),
+        GetPage(
+          name: _Paths.DetailKategori,
+          page: () => DetailKategoriView(kategori: Get.arguments),
+        ),
+      ],
     ),
     GetPage(
       name: _Paths.BOTTOM_MENU,

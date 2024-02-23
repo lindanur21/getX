@@ -1,40 +1,51 @@
+// To parse this JSON data, do
+//
+//     final employe = employeFromJson(jsonString);
+
+import 'dart:convert';
+
+List<Employe> employeFromJson(String str) =>
+    List<Employe>.from(json.decode(str).map((x) => Employe.fromJson(x)));
+
+String employeToJson(List<Employe> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
 class Employe {
-  int? id;
-  String? employeName;
-  String? employeRole;
-  String? employePhoneNumber;
-  String? employeAddress;
-  String? createdAt;
-  String? updatedAt;
+  final int id;
+  final String employeName;
+  final String employeRole;
+  final String? employePhoneNumber;
+  final String? employeAddress;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
-  Employe(
-      {this.id,
-      this.employeName,
-      this.employeRole,
-      this.employePhoneNumber,
-      this.employeAddress,
-      this.createdAt,
-      this.updatedAt});
+  Employe({
+    required this.id,
+    required this.employeName,
+    required this.employeRole,
+    required this.employePhoneNumber,
+    required this.employeAddress,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 
-  Employe.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    employeName = json['employe_name'];
-    employeRole = json['employe_role'];
-    employePhoneNumber = json['employe_phone_number'];
-    employeAddress = json['employe_address'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-  }
+  factory Employe.fromJson(Map<String, dynamic> json) => Employe(
+        id: json["id"],
+        employeName: json["employe_name"],
+        employeRole: json["employe_role"],
+        employePhoneNumber: json["employe_phone_number"],
+        employeAddress: json["employe_address"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+      );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['employe_name'] = this.employeName;
-    data['employe_role'] = this.employeRole;
-    data['employe_phone_number'] = this.employePhoneNumber;
-    data['employe_address'] = this.employeAddress;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "employe_name": employeName,
+        "employe_role": employeRole,
+        "employe_phone_number": employePhoneNumber,
+        "employe_address": employeAddress,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+      };
 }

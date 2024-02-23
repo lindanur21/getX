@@ -29,4 +29,7 @@ abstract class _Paths {
   static const EMPLOYE = '/employe';
   static const KATEGORI = '/kategori';
   static const BOTTOM_MENU = '/bottom-menu';
+  static const String CreateKategori = '/create-kategori';
+  static const String EditKategori = '/edit-kategori';
+  static const String DetailKategori = '/edit-kategori';
 }

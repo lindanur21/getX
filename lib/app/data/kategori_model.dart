@@ -1,19 +1,24 @@
-// pasien_model.dart
 class Kategori {
-  int id;
-  String nama_kategori;
-  bool isEditable; // Add this property
+  int? id;
+  String? namaKategori;
+  String? createdAt;
+  String? updatedAt;
 
- Kategori({
-    required this.id,
-    required this.nama_kategori,
-    this.isEditable = false, // Set default value to false
-  });
+  Kategori({this.id, this.namaKategori, this.createdAt, this.updatedAt});
 
-  factory Kategori.fromJson(Map<String, dynamic> json) {
-    return Kategori(
-      id: json['id'],
-      nama_kategori: json['nama'],
-    );
+  Kategori.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    namaKategori = json['nama_kategori'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['nama_kategori'] = this.namaKategori;
+    data['createdAt'] = this.createdAt;
+    data['updatedAt'] = this.updatedAt;
+    return data;
   }
 }

@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../providers/api.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterController extends GetxController {
-  //TODO: Implement RegisterController
   final formKey = GlobalKey<FormState>();
 
   var username = ''.obs;
@@ -50,7 +50,7 @@ class RegisterController extends GetxController {
   }
 
   Future<http.Response> _performRegistration() async {
-    var apiUrl = 'api/v1/auth/register';
+    var apiUrl = '/v1/auth/register';
     var requestBody = {
       'username': username.value,
       'fullname': fullname.value,

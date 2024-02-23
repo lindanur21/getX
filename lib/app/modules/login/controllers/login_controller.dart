@@ -40,7 +40,7 @@ class LoginController extends GetxController {
   }
 
   Future<http.Response> _performLogin() async {
-    var apiUrl = 'api/v1/auth/login';
+    var apiUrl = '/v1/auth/login';
     var requestBody = {'username': username.value, 'password': password.value};
 
     return await http.post(Uri.parse(Api.baseUrl + apiUrl),

@@ -1,38 +1,26 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-
-import '../../../data/employe_model.dart';
-import '../../../providers/api.dart';
+import 'package:learn_getx/app/data/employe_model.dart';
 
 class EmployeController extends GetxController {
-  var employeList = <Employe>[].obs;
+  final _getConnect = GetConnect();
+
+  Future<Employe> getEmploye() async {
+    final response = await _getConnect.get('http://10.10.9.77:3000/api/v1/employe');
+    return Employe.fromJson(response.body);
+  }
+
   @override
   void onInit() {
     super.onInit();
-    fetchData();
   }
 
-  Future<void> fetchData() async {
-    try {
-      var apiUrl = '${Api.baseUrl}/employe';
-      var headers = await Api.getHeaders();
+  @override
+  void onReady() {
+    super.onReady();
+  }
 
-      var response = await http.get(
-        Uri.parse(apiUrl),
-        headers: headers,
-      );
-
-      if (response.statusCode == 200) {
-        Iterable jsonResponse = json.decode(response.body)['data'];
-        employeList
-            .assignAll(jsonResponse.map((model) => Employe.fromJson(model)));
-      } else {
-        throw Exception('Failed to load employe');
-      }
-    } catch (e) {
-      print('Error during fetching employe: $e');
-    }
+  @override
+  void onClose() {
+    super.onClose();
   }
 }
